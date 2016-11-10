@@ -1,0 +1,140 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Information générale-->
+    <groupId>org.laruche.casper</groupId>
+    <artifactId>casper</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>casper-common</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <!-- Informations générales-->
+    <name>Casper</name>
+    <description>Framework web</description>
+
+    <properties>
+        <scalaVersion>2.11.8</scalaVersion>
+        <scalaBinaryVersion>2.11</scalaBinaryVersion>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <repositories>
+
+        <repository>
+            <id>central</id>
+            <name>Default Repository</name>
+            <url>http://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+        </repository>
+
+        <repository>
+            <id>artima</id>
+            <name>Artima Maven Repository</name>
+            <url>http://repo.artima.com/releases</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <args>
+                        <!-- work-around for https://issues.scala-lang.org/browse/SI-8358 -->
+                        <arg>-nobootcp</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Modules du projets -->
+            <dependency>
+                <groupId>com.kyriba.thot</groupId>
+                <artifactId>thot-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Librairies générales -->
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scalaVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang.modules</groupId>
+                <artifactId>scala-xml_${scalaBinaryVersion}</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang.modules</groupId>
+                <artifactId>scala-parser-combinators_${scalaBinaryVersion}</artifactId>
+                <version>1.0.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scala-lang.modules</groupId>
+                <artifactId>scala-swing_${scalaBinaryVersion}</artifactId>
+                <version>2.0.0-M2</version>
+            </dependency>
+
+            <!-- Librairies de test -->
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.1.0</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalactic</groupId>
+                <artifactId>scalactic_${scalaBinaryVersion}</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_${scalaBinaryVersion}</artifactId>
+                <version>3.0.0</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
